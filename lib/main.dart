@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import './Screens/category_meals_screen.dart';
@@ -10,7 +9,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,10 +34,25 @@ class MyApp extends StatelessWidget {
       ),
       home: CategoriesScreen(),
       //instead of using home: ScreenWidget we can delete home and use a route as: '/': (ctx) =>ScreenWidget()
-      routes: { //create a route for each screen (an identifier)
-       // '/category-meals': (ctx) => CategoryMealsScreen() //we have created identifier for CategoryMealsScreen - one of the options
-       CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(), //is the same as the previous line
-       MealDetailScreen.routeName: (ctx) => MealDetailScreen()
+      routes: {
+        //create a route for each screen (an identifier)
+        // '/category-meals': (ctx) => CategoryMealsScreen() //we have created identifier for CategoryMealsScreen - one of the options
+        CategoryMealsScreen.routeName: (ctx) =>
+            CategoryMealsScreen(), //is the same as the previous line
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen()
+      },
+      // onGenerateRoute: (settings) {
+      //   //can be used when we biult highly dinamic apps where we have route names (identifiers) that are generated dinamically
+      //   if (settings.name == '/meal-detail') {
+      //     return MaterialPageRoute(
+      //       builder: (ctx) => CategoriesScreen(),
+      //     );
+      //   }
+      //   ;
+      // },
+      onUnknownRoute: (settings){ //unknown route is reached when flutter fails to biuld a screen with all other measures, before it shows an error, it's a good ideea to show a page as "we couldn't find that page" 
+         return MaterialPageRoute(
+            builder: (ctx) => CategoriesScreen());
       },
     );
   }
