@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CategoryMealsScreen extends StatelessWidget {
+import './dummy_data.dart';
 
-  static const routeName = "/category-meals"; //we create a identifier for this screen in a static const which can be accessed withouth having to instntiate it
+class CategoryMealsScreen extends StatelessWidget {
+  static const routeName =
+      "/category-meals"; //we create a identifier for this screen in a static const which can be accessed withouth having to instntiate it
   // final String categoryId;
   // final String categoryTitle;
 
@@ -10,16 +12,27 @@ class CategoryMealsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final routeArguments =
-        ModalRoute.of(context).settings.arguments as Map<String, String>; //create ModalRout to match the type of arguments created in the CategoryItem Navigator
+    final routeArguments = ModalRoute.of(context).settings.arguments as Map<
+        String,
+        String>; //create ModalRoute to match the type of arguments created in the CategoryItem Navigator
     final categoryTitle = routeArguments['title'];
     final categoryId = routeArguments['id'];
+    final categoryMeals = DUMMY_MEALS.where(
+      //categoryMeals will contain only the meals which contains the categoryId in the categories (see dummy data, it will make sense)
+      (element) {
+        return element.categories.contains(categoryId);
+      },
+    ).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryTitle),
       ),
-      body: Center(
-        child: Text(categoryTitle),
+      body: ListView.builder(
+        itemBuilder: (ctx, index) {
+          return Text('${categoryMeals[index].title}');
+        },
+        itemCount: categoryMeals.length,
       ),
     );
   }
