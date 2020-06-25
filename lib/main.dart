@@ -8,6 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,8 +33,10 @@ class MyApp extends StatelessWidget {
             ),
       ),
       home: CategoriesScreen(),
+      //instead of using home: ScreenWidget we can delete home and use a route as: '/': (ctx) =>ScreenWidget()
       routes: { //create a route for each screen (an identifier)
-        '/category-meals': (ctx) => CategoryMealsScreen() //we have created identifier for CategoryMealsScreen
+       // '/category-meals': (ctx) => CategoryMealsScreen() //we have created identifier for CategoryMealsScreen - one of the options
+       CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen() //is the same as the previous line
       },
     );
   }
