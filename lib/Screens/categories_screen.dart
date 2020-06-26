@@ -7,14 +7,14 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'My meals',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      // appBar: AppBar(//we have removed the appBar as the TabsScreen already has one, and it would have douplicate it
+      //   title: Text(
+      //     'My meals',
+      //     style: TextStyle(
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
       body: GridView( //=collection view
         padding: const EdgeInsets.all(25),
         children: DUMMY_CATEGORIES.map((catData) {
