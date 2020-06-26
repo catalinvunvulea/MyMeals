@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import './Screens/category_meals_screen.dart';
 import './Screens/categories_screen.dart';
 import './Screens/meal_detail_screen.dart';
-import './Screens/tabs_screen.dart';
+import './Screens/tabs_to_bar_screen.dart';
+import './Screens/tabs_to_bottom_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: TabsScreen(),
+      home: TabsToBottomScreen(),
       //instead of using home: ScreenWidget we can delete home and use a route as: '/': (ctx) =>ScreenWidget()
       routes: {
         //create a route for each screen (an identifier)

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import './favourites_screen.dart';
 import './categories_screen.dart';
 
-class TabsScreen extends StatefulWidget {
-  TabsScreen({Key key}) : super(key: key);
+class TabsToBarScreen extends StatefulWidget { //requiered only if we add tabs at the bottom
+  TabsToBarScreen({Key key}) : super(key: key);
 
   @override
-  _TabsScreenState createState() => _TabsScreenState();
+  _TabsToBarScreenState createState() => _TabsToBarScreenState();
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsToBarScreenState extends State<TabsToBarScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
