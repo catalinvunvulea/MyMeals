@@ -15,7 +15,7 @@ class MealDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget buildContainer(
+  Widget buildContainer( //on this ocasion, as the MediaQuery triggers the build method, to avoid building the complete screen, it would be recommended to store this in a sepparate widget (in the same file as it is used only here) 
       BuildContext context, double height, double width, Widget widget) {
     return Container(
         decoration: BoxDecoration(
