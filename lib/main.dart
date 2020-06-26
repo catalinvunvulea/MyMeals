@@ -1,4 +1,5 @@
 
+import 'package:MyMeals/Screens/filters_screen.dart';
 import 'package:flutter/material.dart';
 
 import './Screens/category_meals_screen.dart';
@@ -6,6 +7,7 @@ import './Screens/categories_screen.dart';
 import './Screens/meal_detail_screen.dart';
 import './Screens/tabs_to_bar_screen.dart';
 import './Screens/tabs_to_bottom_screen.dart';
+import './Screens/filters_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,7 +44,8 @@ class MyApp extends StatelessWidget {
         // '/category-meals': (ctx) => CategoryMealsScreen() //we have created identifier for CategoryMealsScreen - one of the options
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(), //is the same as the previous line
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen()
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen()
       },
       // onGenerateRoute: (settings) {
       //   //can be used when we biult highly dinamic apps where we have route names (identifiers) that are generated dinamically
