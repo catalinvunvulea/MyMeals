@@ -15,8 +15,12 @@ class MealDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget buildContainer( //on this ocasion, as the MediaQuery triggers the build method, to avoid building the complete screen, it would be recommended to store this in a sepparate widget (in the same file as it is used only here) 
-      BuildContext context, double height, double width, Widget widget) {
+  Widget buildContainer(
+      //on this ocasion, as the MediaQuery triggers the build method, to avoid building the complete screen, it would be recommended to store this in a sepparate widget (in the same file as it is used only here)
+      BuildContext context,
+      double height,
+      double width,
+      Widget widget) {
     return Container(
         decoration: BoxDecoration(
           color: Colors.yellowAccent[50],
@@ -90,6 +94,12 @@ class MealDetailScreen extends StatelessWidget {
                     itemCount: selectedMeal.steps.length))
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed: () {
+          Navigator.of(context).pop(mealId); //pop removes screens that are on top of the stack; you can pass data to the previous screen in pop(here) canPop is recommended if you replace a page and you don't have where to go back
+        },
       ),
     );
   }
