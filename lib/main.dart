@@ -1,19 +1,59 @@
 
 import 'package:MyMeals/Screens/filters_screen.dart';
+import 'package:MyMeals/dummy_data.dart';
 import 'package:flutter/material.dart';
 
 import './Screens/category_meals_screen.dart';
 import './Screens/categories_screen.dart';
 import './Screens/meal_detail_screen.dart';
-import './Screens/tabs_to_bar_screen.dart';
 import './Screens/tabs_to_bottom_screen.dart';
 import './Screens/filters_screen.dart';
+import './dummy_data.dart';
+import './models/meal.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+Map<String, bool> _filters = {
+'gluten': false,
+'lactose': false,
+'vegan': false,
+'vegeterian': false,
+};
+
+List<Meal> _availableMeals = DUMMY_MEALS;
+
+void _setFilters(Map<String, bool> filterData) {
+  setState(() {
+    _filters = filterData;
+
+    _availableMeals = DUMMY_MEALS.where((meal) {
+      if (_filters['gluten'] && !meal.isGlutenFree) { //if gluten is false and it is not gluten free, we don't wan to include it in the list
+        return false; //if we return false, this won't show in the Map(Dictionary)
+      }
+      if (_filters['lactose'] && !meal.isLactoseFree) { 
+        return false;
+      }
+      if (_filters['vegan'] && !meal.isVegan) { 
+        print(_filters['vegan']);
+        return false;
+      }
+      if (_filters['vegeterian'] && !meal.isVegetarian) { 
+        return false; 
+      }
+      return true;
+    }).toList();
+  });
+
+}
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -43,9 +83,9 @@ class MyApp extends StatelessWidget {
         //create a route for each screen (an identifier)
         // '/category-meals': (ctx) => CategoryMealsScreen() //we have created identifier for CategoryMealsScreen - one of the options
         CategoryMealsScreen.routeName: (ctx) =>
-            CategoryMealsScreen(), //is the same as the previous line
+            CategoryMealsScreen(_availableMeals), //is the same as the previous line
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
-        FiltersScreen.routeName: (ctx) => FiltersScreen()
+        FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters)
       },
       // onGenerateRoute: (settings) {
       //   //can be used when we biult highly dinamic apps where we have route names (identifiers) that are generated dinamically
