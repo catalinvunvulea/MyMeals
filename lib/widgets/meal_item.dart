@@ -10,7 +10,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Function removeItem;
+
 
   MealItem({
     @required this.title,
@@ -19,7 +19,6 @@ class MealItem extends StatelessWidget {
     @required this.duration,
     @required this.complexity,
     @required this.affordability,
-    @required this.removeItem,
   });
 
   //we add a getter to "translate" the enum value
@@ -60,7 +59,7 @@ class MealItem extends StatelessWidget {
         .pushNamed(MealDetailScreen.routeName, arguments: id)
         .then((value) {//pushNamed return a future; the func is over only once the pushedScreen is closed; with then we can receive something from the pushedScreen (passed from that screen using pop(dataToSend))
       if (value != null) { //as the previos screen can be also dismissed from the backButton from Bar, we need to ensure it was from our custom button which will send back a value(mealId)
-        removeItem(value);
+       // removeItem(value); //initially used only as a different example
       };
     });
   }

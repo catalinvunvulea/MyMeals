@@ -38,7 +38,7 @@ class _TabsToBarScreenState extends State<TabsToBarScreen> {
         body: TabBarView(
           children: <Widget>[
             //need to add as many widgets as we have tabs (in this case 2)
-            CategoriesScreen(), FavouritesScreen(),
+//            CategoriesScreen(), FavouritesScreen(),
           ],
         ),
       ),

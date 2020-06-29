@@ -4,6 +4,10 @@ import '../dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = './meal-detail-screen';
+  final Function toggleFavourites;
+  final Function isFavourite;
+
+  MealDetailScreen(this.toggleFavourites, this.isFavourite);
 
   Widget buildSectionTitle(BuildContext context, String title) {
     return Container(
@@ -96,10 +100,10 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () {
-          Navigator.of(context).pop(mealId); //pop removes screens that are on top of the stack; you can pass data to the previous screen in pop(here) canPop is recommended if you replace a page and you don't have where to go back
-        },
+        child: Icon(
+          isFavourite(mealId) ? Icons.star : Icons.star_border,
+        ),
+        onPressed: () => toggleFavourites(mealId),
       ),
     );
   }

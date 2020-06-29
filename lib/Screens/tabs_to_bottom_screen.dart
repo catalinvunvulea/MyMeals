@@ -1,24 +1,37 @@
+import 'package:MyMeals/Screens/tabs_to_bar_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/main_drawer.dart';
 import './favourites_screen.dart';
 import './categories_screen.dart';
+import '../models/meal.dart';
 
 class TabsToBottomScreen extends StatefulWidget {
   //requiered only if we add tabs at the bottom
-  TabsToBottomScreen({Key key}) : super(key: key);
+  final List<Meal> favouriteMeals;
+
+  TabsToBottomScreen(this.favouriteMeals);
 
   @override
   _TabsToBarScreenState createState() => _TabsToBarScreenState();
 }
 
 class _TabsToBarScreenState extends State<TabsToBottomScreen> {
-  final List<Map<String, Object>> _pages = [
-    {'page': CategoriesScreen(), 'title': 'Categories'},
-    {'page': FavouritesScreen(), 'title': 'Your favourites'},
-  ];
+  List<Map<String, Object>> _pages;
 
   int _selectedPageIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      {'page': CategoriesScreen(), 'title': 'Categories'},
+      {
+        'page': FavouritesScreen(widget.favouriteMeals),
+        'title': 'Your favourites'
+      },
+    ];
+  }
 
   void _selectPage(int index) {
     //flutter will automatically pass in the index, no need to manually do it
